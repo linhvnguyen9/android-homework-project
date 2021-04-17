@@ -1,7 +1,7 @@
 package com.linh.myapplication.presentation
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.tabs.TabLayoutMediator
 import com.linh.myapplication.R
 import kotlinx.android.synthetic.main.activity_main.*
@@ -23,5 +23,23 @@ class MainActivity : AppCompatActivity() {
                 else -> ""
             }
         }.attach()
+
+        navigation.setOnNavigationItemSelectedListener {
+            return@setOnNavigationItemSelectedListener when (it.itemId) {
+                R.id.home -> {
+                    viewpager.currentItem = 0
+                    true
+                }
+                R.id.result -> {
+                    viewpager.currentItem = 1
+                    true
+                }
+                R.id.studentInfo -> {
+                    viewpager.currentItem = 2
+                    true
+                }
+                else -> return@setOnNavigationItemSelectedListener false
+            }
+        }
     }
 }
