@@ -15,6 +15,7 @@
         android:src="@drawable/profile_avatar_placeholder_large"/>
 
     <TextView
+        android:id="@+id/text_student_info_name"
         android:layout_marginTop="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -33,5 +34,29 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Công nghệ thông tin" />
+
+    <TextView
+        android:id="@+id/text_student_info_email"
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="example@gmail.com"/>
+    
+    <TextView
+        android:layout_marginTop="16dp"
+        android:paddingVertical="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Văn phòng một cửa trực tuyến"
+        android:background="?attr/selectableItemBackground"/>
+
+    <TextView
+        android:id="@+id/text_student_info_logout"
+        android:layout_marginTop="8dp"
+        android:paddingVertical="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Đăng xuất"
+        android:background="?attr/selectableItemBackground"/>
 
 </LinearLayout>
