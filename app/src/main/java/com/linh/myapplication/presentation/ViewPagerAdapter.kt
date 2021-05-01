@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.linh.myapplication.presentation.result.GradeFragment
+import com.linh.myapplication.presentation.studentsupportchat.StudentSupportChatFragment
 
 class ViewPagerAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity) {
     override fun getItemCount(): Int = 3
@@ -12,7 +13,7 @@ class ViewPagerAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapte
         return when (position) {
             0 -> HomeFragment()
             1 -> GradeFragment()
-            2 -> StudentInfoFragment()
+            2 -> StudentSupportChatFragment()
             else -> HomeFragment()
         }
     }
