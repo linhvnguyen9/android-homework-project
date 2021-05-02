@@ -43,6 +43,7 @@
         tools:text="example@gmail.com"/>
     
     <TextView
+        android:id="@+id/text_student_info_support_chat"
         android:layout_marginTop="16dp"
         android:paddingVertical="8dp"
         android:layout_width="match_parent"
