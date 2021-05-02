@@ -40,7 +40,10 @@ class StudentSupportChatFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         db = FirebaseDatabase.getInstance()
-        val messagesRef = db.reference.child(MESSAGES_CHILD)
+        val auth = FirebaseAuth.getInstance()
+        val user = auth.currentUser
+
+        val messagesRef = db.reference.child(MESSAGES_CHILD).child(user?.uid ?: "")
 
         val options = FirebaseRecyclerOptions.Builder<ChatMessage>()
             .setQuery(messagesRef, ChatMessage::class.java)
@@ -68,7 +71,8 @@ class StudentSupportChatFragment : Fragment() {
 
         binding.buttonStudentSupportChatSend.setOnClickListener {
             val message = ChatMessage(binding.textStudentSupportChatMessage.text.toString(), currentUser ?: ANONYMOUS)
-            db.reference.child(MESSAGES_CHILD).push().setValue(message)
+
+            db.reference.child(MESSAGES_CHILD).child(user?.uid ?: "").push().setValue(message)
             binding.textStudentSupportChatMessage.setText("")
         }
 
@@ -89,7 +93,7 @@ class StudentSupportChatFragment : Fragment() {
                 val auth = FirebaseAuth.getInstance()
                 val user = auth.currentUser
                 val tempMessage =
-                    ChatMessage(null, user?.displayName ?: ANONYMOUS, user?.photoUrl.toString() ?: "", LOADING_IMAGE_URL)
+                    ChatMessage(null, user?.displayName ?: ANONYMOUS, user?.photoUrl.toString(), LOADING_IMAGE_URL)
                 db.reference.child(MESSAGES_CHILD).push()
                     .setValue(
                         tempMessage,
