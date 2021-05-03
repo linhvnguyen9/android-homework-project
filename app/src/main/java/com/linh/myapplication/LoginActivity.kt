@@ -8,6 +8,8 @@ import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
 import com.google.firebase.auth.FirebaseAuth
 import com.linh.myapplication.presentation.MainActivity
+import com.linh.myapplication.presentation.admin.AdminActivity
+import com.linh.myapplication.presentation.studentsupportchat.StudentSupportChatActivity
 import timber.log.Timber
 
 class LoginActivity : AppCompatActivity() {
@@ -41,10 +43,17 @@ class LoginActivity : AppCompatActivity() {
             if (resultCode == Activity.RESULT_OK) {
                 // Successfully signed in
                 val user = FirebaseAuth.getInstance().currentUser
-                Timber.d(user.toString())
-                Timber.d(user.email)
+                Timber.d(user?.toString())
+                Timber.d(user?.email)
 
-                val intent = Intent(this, MainActivity::class.java)
+                val isAdmin = user?.getIdToken(false)?.result?.claims?.get("admin") as? Boolean ?: false
+
+                val intent = if (!isAdmin) {
+                    Intent(this, MainActivity::class.java)
+                } else {
+                    Intent(this, AdminActivity::class.java)
+                }
+
                 startActivity(intent)
                 finish()
             } else {
