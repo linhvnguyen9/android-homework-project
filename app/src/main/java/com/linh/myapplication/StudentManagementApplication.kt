@@ -11,6 +11,9 @@ class StudentManagementApplication : Application() {
 
         Timber.plant(Timber.DebugTree())
 
-        FirebaseDatabase.getInstance().setLogLevel(Logger.Level.DEBUG)
+        FirebaseDatabase.getInstance().apply {
+            setLogLevel(Logger.Level.DEBUG)
+            setPersistenceEnabled(true)
+        }
     }
 }
