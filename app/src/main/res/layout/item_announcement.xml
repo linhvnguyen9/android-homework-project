@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="announcement"
+            type="com.linh.myapplication.domain.Announcement" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:clipToPadding="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:textColor="@android:color/darker_gray"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:timestamp="@{announcement.timestamp}"
+                android:textSize="12sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{announcement.title}"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                tools:text="Title" />
+
+            <ImageView
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:imageUrl="@{announcement.imageUrl}" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:maxLines="3"
+                android:ellipsize="end"
+                android:text="@{announcement.content}" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

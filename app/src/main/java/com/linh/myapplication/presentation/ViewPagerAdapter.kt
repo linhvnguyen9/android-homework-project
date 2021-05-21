@@ -3,6 +3,7 @@ package com.linh.myapplication.presentation
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.linh.myapplication.presentation.home.HomeFragment
 import com.linh.myapplication.presentation.result.GradeFragment
 
 class ViewPagerAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity) {
