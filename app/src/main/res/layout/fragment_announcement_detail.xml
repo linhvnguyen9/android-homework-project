@@ -68,7 +68,9 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:layout_marginTop="12dp"
                         android:id="@+id/date"
+                        android:textAppearance="?attr/textAppearanceCaption"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
 
@@ -80,6 +82,17 @@
                         android:text="@{annoucement.content}"/>
                 </LinearLayout>
             </androidx.core.widget.NestedScrollView>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                app:layout_anchor="@id/app_bar"
+                app:backgroundTint="?attr/colorPrimary"
+                app:tint="?attr/colorOnPrimarySurface"
+                app:layout_anchorGravity="bottom|end"
+                app:srcCompat="@android:drawable/ic_menu_share" />
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
     </FrameLayout>

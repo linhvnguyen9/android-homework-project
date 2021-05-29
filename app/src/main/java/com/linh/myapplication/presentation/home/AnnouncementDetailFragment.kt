@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.linh.myapplication.R
 import com.linh.myapplication.databinding.FragmentAnnouncementDetailBinding
 import com.linh.myapplication.domain.Announcement
+import com.linh.myapplication.presentation.CalendarUtl
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -29,6 +30,7 @@ class AnnouncementDetailFragment : Fragment() {
         binding = FragmentAnnouncementDetailBinding.inflate(inflater, container, false)
         binding.annoucement = param1
         binding.toolbar.title = param1?.title
+        binding.date.text = "Cập nhật ngày ${CalendarUtl.toFormattedString(param1?.timestamp ?: 0)}"
         return binding.root
     }
 
