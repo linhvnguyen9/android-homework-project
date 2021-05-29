@@ -34,6 +34,10 @@ class HomeFragment : Fragment() {
         binding.recyclerviewAnnoucements.adapter = AnnouncementsListAdapter(object : AnnouncementClickListener {
             override fun onClick(announcement: Announcement) {
                 requireActivity().supportFragmentManager.commit {
+                    setCustomAnimations(
+                        R.anim.slide_in,
+                        R.anim.slide_out
+                    )
                     replace(R.id.container, AnnouncementDetailFragment.newInstance(announcement))
                     addToBackStack(HomeFragment::class.java.simpleName)
                 }
