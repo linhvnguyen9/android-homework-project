@@ -28,6 +28,7 @@ class AnnouncementDetailFragment : Fragment() {
                               savedInstanceState: Bundle?): View {
         binding = FragmentAnnouncementDetailBinding.inflate(inflater, container, false)
         binding.annoucement = param1
+        binding.toolbar.title = param1?.title
         return binding.root
     }
 

@@ -9,31 +9,78 @@
             type="com.linh.myapplication.domain.Announcement" />
     </data>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
-        tools:context=".presentation.home.AnnouncementDetailFragment">
-
-        <LinearLayout
+        android:layout_height="match_parent">
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <ImageView
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            tools:context=".presentation.home.AnnouncementDetailFragment">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/app_bar"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                app:imageUrl="@{annoucement.imageUrl}" />
+                android:orientation="vertical"
+                android:fitsSystemWindows="true">
+                <com.google.android.material.appbar.CollapsingToolbarLayout
+                    android:id="@+id/toolbar_layout"
+                    android:layout_width="match_parent"
+                    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                    app:expandedTitleGravity="top"
+                    app:expandedTitleMarginStart="20dp"
+                    app:expandedTitleMarginTop="16dp"
+                    android:layout_height="match_parent"
+                    android:fitsSystemWindows="true"
+                    app:contentScrim="?attr/colorSurface"
+                    app:expandedTitleTextAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                    app:scrimAnimationDuration="250"
+                    app:toolbarId="@+id/toolbar">
 
-            <TextView
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:fitsSystemWindows="true"
+                        android:scaleType="centerCrop"
+                        android:layout_height="match_parent"
+                        app:layout_collapseMode="parallax"
+                        app:imageUrl="@{annoucement.imageUrl}" />
+
+                    <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        app:layout_scrollFlags="noScroll"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        app:layout_collapseMode="pin" />
+
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
-                android:text="@{annoucement.title}"
-                android:layout_height="wrap_content"/>
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:orientation="vertical">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@{annoucement.content}"/>
-        </LinearLayout>
+                    <TextView
+                        android:id="@+id/date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+                    <TextView
+                        android:layout_marginTop="16dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:text="@{annoucement.content}"/>
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </FrameLayout>
 </layout>
