@@ -1,6 +1,7 @@
 package com.linh.myapplication.di
 
 import com.linh.myapplication.data.remote.announcement.AnnouncementService
+import com.linh.myapplication.presentation.admin.AdminComposeAnnouncementViewModel
 import com.linh.myapplication.presentation.home.HomeViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -34,4 +35,5 @@ val ourModule = module {
     factory { get<Retrofit>().create(AnnouncementService::class.java) }
 
     viewModel { HomeViewModel(get()) }
+    viewModel { AdminComposeAnnouncementViewModel(get()) }
 }

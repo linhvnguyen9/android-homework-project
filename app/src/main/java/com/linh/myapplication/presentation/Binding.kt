@@ -1,7 +1,9 @@
 package com.linh.myapplication.presentation
 
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import java.util.*
@@ -10,6 +12,13 @@ import java.util.*
 fun setImageUrl(image: ImageView, url: String?) {
     if (url != null) {
         Glide.with(image).load(url).into(image)
+    }
+}
+
+@BindingAdapter("android:visibility")
+fun setVisibility(view: View, isVisible: Boolean?) {
+    if (isVisible != null) {
+        view.isVisible = isVisible
     }
 }
 

@@ -35,7 +35,9 @@ class AnnouncementsListAdapter(private val clickListener : AnnouncementClickList
                     ItemAnnouncementBinding.inflate(
                         LayoutInflater.from(
                             parent.context
-                        )
+                        ),
+                        parent,
+                        false
                     )
                 )
             }

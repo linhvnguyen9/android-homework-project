@@ -13,6 +13,18 @@
         android:layout_marginTop="16dp"
         android:text="Welcome Admin!"/>
 
+    <Button
+        android:id="@+id/logout"
+        android:text="Logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/button_announcement"
+        android:text="Thông báo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_marginHorizontal="16dp"
         android:id="@+id/recycler_admin_chat_list"

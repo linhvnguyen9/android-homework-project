@@ -9,47 +9,52 @@
             type="com.linh.myapplication.domain.Announcement" />
     </data>
 
-    <androidx.cardview.widget.CardView
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="8dp">
-
-        <LinearLayout
+        android:layout_marginBottom="8dp">
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:clipToPadding="true"
-            android:orientation="vertical">
+            android:layout_marginVertical="8dp">
 
-            <ImageView
-                android:layout_marginTop="8dp"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:imageUrl="@{announcement.imageUrl}" />
+                android:layout_margin="4dp"
+                android:clipToPadding="true"
+                android:orientation="vertical">
 
-            <TextView
-                android:textColor="@android:color/darker_gray"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:timestamp="@{announcement.timestamp}"
-                android:textSize="12sp"/>
+                <ImageView
+                    android:layout_marginTop="8dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:imageUrl="@{announcement.imageUrl}" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@{announcement.title}"
-                android:textAppearance="?attr/textAppearanceHeadline6"
-                android:textStyle="bold"
-                tools:text="Title" />
+                <TextView
+                    android:textColor="@android:color/darker_gray"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:timestamp="@{announcement.timestamp}"
+                    android:textSize="12sp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{announcement.title}"
+                    android:textAppearance="?attr/textAppearanceHeadline6"
+                    android:textStyle="bold"
+                    tools:text="Title" />
 
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:maxLines="3"
-                android:ellipsize="end"
-                android:text="@{announcement.content}" />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:maxLines="3"
+                    android:ellipsize="end"
+                    android:text="@{announcement.content}" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </FrameLayout>
 </layout>
