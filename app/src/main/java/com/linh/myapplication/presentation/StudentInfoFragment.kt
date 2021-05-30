@@ -9,8 +9,10 @@ import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.linh.myapplication.LoginActivity
+import com.linh.myapplication.data.remote.announcement.Student
 import com.linh.myapplication.databinding.FragmentStudentInfoBinding
 import com.linh.myapplication.presentation.studentsupportchat.StudentSupportChatActivity
 
@@ -45,6 +47,12 @@ class StudentInfoFragment : Fragment() {
         val imageView = binding.imageProfile
 
         Glide.with(imageView).load(url).circleCrop().into(imageView)
+
+        Firebase.database.getReference("student").child(Firebase.auth.currentUser.uid).get().addOnSuccessListener {
+            val result =  it.getValue(Student::class.java)
+            binding.textStudentCode.text = result?.code
+            binding.textStudentMajor.text = result?.major
+        }
     }
 
     private fun logout() {
