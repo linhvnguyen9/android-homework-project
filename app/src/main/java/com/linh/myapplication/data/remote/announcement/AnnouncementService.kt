@@ -8,7 +8,7 @@ import retrofit2.http.POST
 
 interface AnnouncementService {
     @GET("/announcements")
-    suspend fun getAnnouncements() : List<Announcement>
+    suspend fun getAnnouncements() : Response<List<Announcement>>
 
     @POST("/announcements")
     suspend fun addAnnouncement(@Body announcement: Announcement): Response<Any>

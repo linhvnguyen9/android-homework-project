@@ -75,15 +75,17 @@ class LoginActivity : AppCompatActivity() {
     private fun goToMain() {
         val user = FirebaseAuth.getInstance().currentUser
 
-        val isAdmin = user?.getIdToken(false)?.result?.claims?.get("admin") as? Boolean ?: false
+        user?.getIdToken(false)?.addOnCompleteListener {
+            val isAdmin = it.result?.claims?.get("admin") as? Boolean ?: false
 
-        val intent = if (!isAdmin) {
-            Intent(this, MainActivity::class.java)
-        } else {
-            Intent(this, AdminActivity::class.java)
+            val intent = if (!isAdmin) {
+                Intent(this, MainActivity::class.java)
+            } else {
+                Intent(this, AdminActivity::class.java)
+            }
+            startActivity(intent)
+            finish()
         }
-        startActivity(intent)
-        finish()
     }
 
     companion object {
