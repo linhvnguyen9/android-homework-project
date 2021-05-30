@@ -44,6 +44,7 @@ class HomeFragment : Fragment() {
             }
         })
         binding.recyclerviewAnnoucements.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerviewAnnoucements.isNestedScrollingEnabled = false
 
         viewModel.announcements.observe(viewLifecycleOwner) {
             (binding.recyclerviewAnnoucements.adapter as AnnouncementsListAdapter).submitList(it)
