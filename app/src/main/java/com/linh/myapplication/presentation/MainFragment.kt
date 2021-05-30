@@ -30,24 +30,13 @@ class MainFragment : Fragment() {
                 2 -> "Sinh viên"
                 else -> ""
             }
-        }.attach()
-
-        navigation.setOnNavigationItemSelectedListener {
-            return@setOnNavigationItemSelectedListener when (it.itemId) {
-                R.id.home -> {
-                    viewpager.currentItem = 0
-                    true
-                }
-                R.id.result -> {
-                    viewpager.currentItem = 1
-                    true
-                }
-                R.id.studentInfo -> {
-                    viewpager.currentItem = 2
-                    true
-                }
-                else -> return@setOnNavigationItemSelectedListener false
+            val iconRes = when (position) {
+                0 -> R.drawable.ic_baseline_home_24
+                1 -> R.drawable.ic_baseline_show_chart_24
+                2 -> R.drawable.ic_baseline_account_circle_24
+                else -> R.drawable.ic_baseline_home_24
             }
-        }
+            tab.setIcon(iconRes)
+        }.attach()
     }
 }
