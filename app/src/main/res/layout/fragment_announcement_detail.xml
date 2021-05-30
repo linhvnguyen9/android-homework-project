@@ -21,7 +21,7 @@
             <com.google.android.material.appbar.AppBarLayout
                 android:id="@+id/app_bar"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="250dp"
                 android:orientation="vertical"
                 android:fitsSystemWindows="true">
                 <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -68,14 +68,21 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:layout_marginTop="12dp"
-                        android:id="@+id/date"
+                      android:id="@+id/date"
+                        android:layout_marginTop="8dp"
                         android:textAppearance="?attr/textAppearanceCaption"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
+                    
+                    <TextView
+                        android:text="@{annoucement.title}"
+                        android:layout_width="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:textAppearance="?attr/textAppearanceHeadline6"
+                        android:layout_height="wrap_content"/>
 
                     <TextView
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="12dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="16sp"
