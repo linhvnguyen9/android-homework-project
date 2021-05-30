@@ -68,6 +68,8 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-database:7.1.1'
     implementation 'com.google.firebase:firebase-storage-ktx'
 
+    implementation 'com.google.firebase:firebase-messaging-ktx'
+
     def koin_version = '3.0.1'
     implementation "io.insert-koin:koin-core:$koin_version"
     implementation "io.insert-koin:koin-android:$koin_version"
