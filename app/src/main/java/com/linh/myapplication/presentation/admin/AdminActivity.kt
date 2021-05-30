@@ -1,13 +1,16 @@
 package com.linh.myapplication.presentation.admin
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.Logger
+import com.linh.myapplication.LoginActivity
 import com.linh.myapplication.R
 import com.linh.myapplication.databinding.ActivityAdminBinding
 import com.linh.myapplication.domain.Chat
@@ -48,6 +51,15 @@ class AdminActivity : AppCompatActivity() {
 
         binding.recyclerAdminChatList.layoutManager = layoutManager
         binding.recyclerAdminChatList.adapter = adapter
+
+        binding.logout.setOnClickListener {
+            logout()
+        }
+
+        binding.buttonAnnouncement.setOnClickListener {
+            val intent = Intent(this, AdminComposeAnnouncementActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onResume() {
@@ -60,6 +72,15 @@ class AdminActivity : AppCompatActivity() {
         super.onPause()
 
         (binding.recyclerAdminChatList.adapter as? AdminChatAdapter)?.stopListening()
+    }
+
+    private fun logout() {
+        val auth = FirebaseAuth.getInstance()
+        auth.signOut()
+
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
     companion object {

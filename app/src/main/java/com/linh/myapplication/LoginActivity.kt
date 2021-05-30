@@ -7,6 +7,8 @@ import android.os.Bundle
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.linh.myapplication.presentation.MainActivity
 import com.linh.myapplication.presentation.admin.AdminActivity
 import com.linh.myapplication.presentation.studentsupportchat.StudentSupportChatActivity
@@ -21,47 +23,68 @@ class LoginActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
 
-        val providers = arrayListOf(
-            AuthUI.IdpConfig.EmailBuilder().build(),
-            AuthUI.IdpConfig.GoogleBuilder().build(),
-        )
+        val auth = Firebase.auth
+        val currentUser = auth.currentUser
 
-        startActivityForResult(
-            AuthUI.getInstance()
-                .createSignInIntentBuilder()
-                .setAvailableProviders(providers)
-                .build(),
-            RC_SIGN_IN)
+        Timber.d("currentUser $currentUser")
+
+        if (currentUser != null) {
+            goToMain()
+        } else {
+            val providers = arrayListOf(
+                AuthUI.IdpConfig.EmailBuilder().build(),
+                AuthUI.IdpConfig.PhoneBuilder().build(),
+                AuthUI.IdpConfig.GoogleBuilder().build(),
+            )
+
+            startActivityForResult(
+                AuthUI.getInstance()
+                    .createSignInIntentBuilder()
+                    .setAvailableProviders(providers)
+                    .build(),
+                RC_SIGN_IN)
+        }
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        Timber.d("onRestart()")
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
+        Timber.d("onActivityResult() requestCode $requestCode")
+        Timber.d("onActivityResult() resultCode $resultCode")
         if (requestCode == RC_SIGN_IN) {
             val response = IdpResponse.fromResultIntent(data)
 
             if (resultCode == Activity.RESULT_OK) {
                 // Successfully signed in
                 val user = FirebaseAuth.getInstance().currentUser
-                Timber.d(user?.toString())
+                Timber.d(user.toString())
                 Timber.d(user?.email)
 
-                val isAdmin = user?.getIdToken(false)?.result?.claims?.get("admin") as? Boolean ?: false
-
-                val intent = if (!isAdmin) {
-                    Intent(this, MainActivity::class.java)
-                } else {
-                    Intent(this, AdminActivity::class.java)
-                }
-
-                startActivity(intent)
-                finish()
+                goToMain()
             } else {
-                // Sign in failed. If response is null the user canceled the
-                // sign-in flow using the back button. Otherwise check
-                // response.getError().getErrorCode() and handle the error.
-                // ...
+                Timber.e("Login fails with reason ${response?.error}")
             }
+        }
+    }
+
+    private fun goToMain() {
+        val user = FirebaseAuth.getInstance().currentUser
+
+        user?.getIdToken(false)?.addOnCompleteListener {
+            val isAdmin = it.result?.claims?.get("admin") as? Boolean ?: false
+
+            val intent = if (!isAdmin) {
+                Intent(this, MainActivity::class.java)
+            } else {
+                Intent(this, AdminActivity::class.java)
+            }
+            startActivity(intent)
+            finish()
         }
     }
 
