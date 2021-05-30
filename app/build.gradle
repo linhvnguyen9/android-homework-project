@@ -55,12 +55,18 @@ dependencies {
 
     implementation 'com.jakewharton.timber:timber:4.7.1'
 
-    implementation platform('com.google.firebase:firebase-bom:28.0.1')
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    kapt 'com.github.bumptech.glide:compiler:4.12.0'
+
+    implementation platform('com.google.firebase:firebase-bom:27.1.0')
 
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-auth-ktx'
     implementation 'com.firebaseui:firebase-ui-auth:7.1.1'
     implementation 'com.google.firebase:firebase-database'
+
+    implementation 'com.firebaseui:firebase-ui-database:7.1.1'
+    implementation 'com.google.firebase:firebase-storage-ktx'
 
     def koin_version = '3.0.1'
     implementation "io.insert-koin:koin-core:$koin_version"

@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import com.google.firebase.auth.FirebaseAuth
 import com.linh.myapplication.LoginActivity
 import com.linh.myapplication.databinding.FragmentStudentInfoBinding
+import com.linh.myapplication.presentation.studentsupportchat.StudentSupportChatActivity
 
 class StudentInfoFragment : Fragment() {
     private lateinit var binding : FragmentStudentInfoBinding
@@ -16,7 +17,7 @@ class StudentInfoFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentStudentInfoBinding.inflate(inflater, container, false)
 
         return binding.root
@@ -31,6 +32,11 @@ class StudentInfoFragment : Fragment() {
         binding.textStudentInfoEmail.text = user?.email
         binding.textStudentInfoLogout.setOnClickListener {
             logout()
+            requireActivity().finish()
+        }
+        binding.textStudentInfoSupportChat.setOnClickListener {
+            val intent = Intent(requireContext(), StudentSupportChatActivity::class.java)
+            startActivity(intent)
         }
     }
 

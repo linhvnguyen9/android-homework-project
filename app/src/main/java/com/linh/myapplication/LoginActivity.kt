@@ -10,6 +10,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.linh.myapplication.presentation.MainActivity
+import com.linh.myapplication.presentation.admin.AdminActivity
+import com.linh.myapplication.presentation.studentsupportchat.StudentSupportChatActivity
 import timber.log.Timber
 
 class LoginActivity : AppCompatActivity() {
@@ -71,7 +73,15 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun goToMain() {
-        val intent = Intent(this, MainActivity::class.java)
+        val user = FirebaseAuth.getInstance().currentUser
+
+        val isAdmin = user?.getIdToken(false)?.result?.claims?.get("admin") as? Boolean ?: false
+
+        val intent = if (!isAdmin) {
+            Intent(this, MainActivity::class.java)
+        } else {
+            Intent(this, AdminActivity::class.java)
+        }
         startActivity(intent)
         finish()
     }
