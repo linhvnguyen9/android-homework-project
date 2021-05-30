@@ -6,7 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.linh.myapplication.LoginActivity
 import com.linh.myapplication.databinding.FragmentStudentInfoBinding
 import com.linh.myapplication.presentation.studentsupportchat.StudentSupportChatActivity
@@ -38,6 +41,10 @@ class StudentInfoFragment : Fragment() {
             val intent = Intent(requireContext(), StudentSupportChatActivity::class.java)
             startActivity(intent)
         }
+        val url = Firebase.auth.currentUser.photoUrl
+        val imageView = binding.imageProfile
+
+        Glide.with(imageView).load(url).circleCrop().into(imageView)
     }
 
     private fun logout() {

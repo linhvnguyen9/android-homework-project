@@ -6,33 +6,36 @@
     tools:context=".presentation.StudentInfoFragment"
     android:orientation="vertical"
     android:paddingHorizontal="16dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingTop="16dp">
 
     <ImageView
+        android:id="@+id/image_profile"
         android:layout_marginTop="32dp"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
         android:src="@drawable/profile_avatar_placeholder_large"/>
 
     <TextView
-        android:id="@+id/text_student_info_name"
         android:layout_marginTop="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Nguyễn Văn A"
-        android:textSize="32sp"
-        android:textStyle="bold"/>
-
-    <TextView
-        android:layout_marginTop="8dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:textAppearance="?attr/textAppearanceCaption"
         android:text="B17DCCN380" />
 
     <TextView
         android:layout_marginTop="8dp"
+        android:id="@+id/text_student_info_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="Nguyễn Văn A"
+        android:textAppearance="?attr/textAppearanceHeadline6"/>
+
+    <TextView
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?attr/textAppearanceBody1"
         android:text="Công nghệ thông tin" />
 
     <TextView
@@ -40,24 +43,39 @@
         android:layout_marginTop="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textAppearance="?attr/textAppearanceBody1"
         tools:text="example@gmail.com"/>
+    
+    <View
+        android:layout_width="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_height="1dp"
+        android:background="#DCDCDC"/>
     
     <TextView
         android:id="@+id/text_student_info_support_chat"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:paddingVertical="8dp"
         android:layout_width="match_parent"
+        android:textSize="16sp"
         android:layout_height="wrap_content"
         android:text="Văn phòng một cửa trực tuyến"
-        android:background="?attr/selectableItemBackground"/>
+        android:background="?attr/selectableItemBackground"
+        android:textAppearance="?attr/textAppearanceBody1"
+        android:drawablePadding="16dp"
+        app:drawableStartCompat="@drawable/ic_baseline_chat_bubble_24" />
 
     <TextView
         android:id="@+id/text_student_info_logout"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:paddingVertical="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Đăng xuất"
-        android:background="?attr/selectableItemBackground"/>
+        android:textSize="16sp"
+        android:textAppearance="?attr/textAppearanceBody1"
+        android:background="?attr/selectableItemBackground"
+        android:drawablePadding="16dp"
+        app:drawableStartCompat="@drawable/ic_baseline_exit_to_app_24"/>
 
 </LinearLayout>
