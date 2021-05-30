@@ -1,5 +1,6 @@
 package com.linh.myapplication.presentation.home
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -31,6 +32,13 @@ class AnnouncementDetailFragment : Fragment() {
         binding.annoucement = param1
         binding.toolbar.title = param1?.title
         binding.date.text = "Cập nhật ngày ${CalendarUtl.toFormattedString(param1?.timestamp ?: 0)}"
+        binding.fab.setOnClickListener {
+            val intent = Intent(Intent.ACTION_SEND)
+            intent.type = "text/plain";
+            intent.putExtra(Intent.EXTRA_TEXT, param1?.content)
+            intent.putExtra(Intent.EXTRA_SUBJECT, param1?.title)
+            startActivity(Intent.createChooser(intent, "Share using..."))
+        }
         return binding.root
     }
 

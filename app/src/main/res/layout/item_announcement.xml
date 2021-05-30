@@ -21,6 +21,12 @@
             android:clipToPadding="true"
             android:orientation="vertical">
 
+            <ImageView
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:imageUrl="@{announcement.imageUrl}" />
+
             <TextView
                 android:textColor="@android:color/darker_gray"
                 android:layout_width="match_parent"
@@ -36,11 +42,6 @@
                 android:textStyle="bold"
                 tools:text="Title" />
 
-            <ImageView
-                android:layout_marginTop="8dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:imageUrl="@{announcement.imageUrl}" />
 
             <TextView
                 android:layout_width="match_parent"
