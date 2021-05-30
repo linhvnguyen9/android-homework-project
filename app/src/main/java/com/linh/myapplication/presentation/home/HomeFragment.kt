@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.commit
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.linh.myapplication.R
 import com.linh.myapplication.databinding.FragmentHomeBinding
 import com.linh.myapplication.domain.Announcement
@@ -45,6 +47,7 @@ class HomeFragment : Fragment() {
         })
         binding.recyclerviewAnnoucements.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerviewAnnoucements.isNestedScrollingEnabled = false
+        binding.textWelcome.text = "Chào mừng ${Firebase.auth.currentUser.displayName}"
 
         viewModel.announcements.observe(viewLifecycleOwner) {
             (binding.recyclerviewAnnoucements.adapter as AnnouncementsListAdapter).submitList(it)
