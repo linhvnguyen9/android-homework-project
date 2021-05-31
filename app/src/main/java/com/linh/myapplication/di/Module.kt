@@ -3,8 +3,10 @@ package com.linh.myapplication.di
 import com.linh.myapplication.data.local.AppDatabase
 import com.linh.myapplication.data.remote.announcement.AnnouncementService
 import com.linh.myapplication.data.remote.announcement.CallAdapterFactory
+import com.linh.myapplication.data.remote.schedule.ScheduleService
 import com.linh.myapplication.presentation.admin.AdminComposeAnnouncementViewModel
 import com.linh.myapplication.presentation.home.HomeViewModel
+import com.linh.myapplication.presentation.result.ScheduleViewModel
 import get
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -38,10 +40,13 @@ val ourModule = module {
     }
 
     factory { get<Retrofit>().create(AnnouncementService::class.java) }
+    factory { get<Retrofit>().create(ScheduleService::class.java) }
 
     factory { get<AppDatabase>().announcementDao() }
+    factory { get<AppDatabase>().scheduleDao() }
     single { AppDatabase.getInstance(androidApplication()) }
 
     viewModel { HomeViewModel(get(), get()) }
     viewModel { AdminComposeAnnouncementViewModel(get()) }
+    viewModel { ScheduleViewModel(get(), get()) }
 }

@@ -5,8 +5,8 @@
         android:title="Trang chủ" />
 
     <item android:id="@+id/result"
-        android:icon="@drawable/ic_baseline_show_chart_24"
-        android:title="Điểm thi" />
+        android:icon="@drawable/ic_baseline_schedule_24"
+        android:title="Lịch" />
 
     <item android:id="@+id/studentInfo"
         android:icon="@drawable/ic_baseline_account_circle_24"

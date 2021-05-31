@@ -23,8 +23,8 @@
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:icon="@drawable/ic_baseline_show_chart_24"
-            android:text="Điểm thi" />
+            android:icon="@drawable/ic_baseline_schedule_24"
+            android:text="Lịch" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
