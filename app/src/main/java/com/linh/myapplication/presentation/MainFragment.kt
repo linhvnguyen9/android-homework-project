@@ -26,13 +26,13 @@ class MainFragment : Fragment() {
         TabLayoutMediator(tab, viewpager) { tab, position ->
             tab.text = when (position) {
                 0 -> "Trang chủ"
-                1 -> "Điểm thi"
+                1 -> "Lịch"
                 2 -> "Sinh viên"
                 else -> ""
             }
             val iconRes = when (position) {
                 0 -> R.drawable.ic_baseline_home_24
-                1 -> R.drawable.ic_baseline_show_chart_24
+                1 -> R.drawable.ic_baseline_schedule_24
                 2 -> R.drawable.ic_baseline_account_circle_24
                 else -> R.drawable.ic_baseline_home_24
             }
