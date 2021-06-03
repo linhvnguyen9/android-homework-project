@@ -13,12 +13,13 @@ import com.linh.myapplication.R
 import com.linh.myapplication.databinding.FragmentGradeBinding
 import com.linh.myapplication.domain.Schedule
 import kotlinx.android.synthetic.main.fragment_grade.*
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ScheduleFragment : Fragment() {
     private lateinit var binding: FragmentGradeBinding
 
-    private val viewModel :ScheduleViewModel by viewModel()
+    private val viewModel: ScheduleViewModel by sharedViewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,7 +42,7 @@ class ScheduleFragment : Fragment() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                viewModel.getSchedule(newText ?: "", null)
+                viewModel.getSchedule(newText ?: "", null, null, null)
 
                 return true
             }
@@ -56,13 +57,13 @@ class ScheduleFragment : Fragment() {
             ) {
                 when (position) {
                     0 -> {
-                        viewModel.getSchedule(null, "time")
+                        viewModel.getSchedule(null, "time", null, null)
                     }
                     1 -> {
-                        viewModel.getSchedule(null, "name")
+                        viewModel.getSchedule(null, "name", null, null)
                     }
                     2 -> {
-                        viewModel.getSchedule(null, "teacher")
+                        viewModel.getSchedule(null, "teacher", null, null)
                     }
                 }
             }
@@ -70,6 +71,13 @@ class ScheduleFragment : Fragment() {
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 viewModel.getSchedule()
             }
+        }
+
+        binding.imageFilter.setOnClickListener {
+            ScheduleFilterDialogFragment().show(
+                childFragmentManager,
+                ScheduleFilterDialogFragment::class.java.simpleName
+            )
         }
 
         viewModel.schedule.observe(viewLifecycleOwner) {
