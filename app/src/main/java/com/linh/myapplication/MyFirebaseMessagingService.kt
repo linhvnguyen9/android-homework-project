@@ -1,15 +1,15 @@
 package com.linh.myapplication
 
-import android.app.Notification
-import android.app.NotificationChannel
-import android.app.NotificationManager
+import android.app.*
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.linh.myapplication.presentation.CalendarUtl
+import com.linh.myapplication.presentation.MainActivity
 import timber.log.Timber
 import java.util.*
 
@@ -29,12 +29,19 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
                 mNotificationManager.createNotificationChannel(channel)
             }
 
+            val intent = Intent(this, MainActivity::class.java)
+            val pendingIntent = TaskStackBuilder.create(this).run {
+                addNextIntentWithParentStack(intent)
+                getPendingIntent(0, PendingIntent.FLAG_ONE_SHOT)
+            }
+
             val builder = NotificationCompat.Builder(this, NOTIFICATION_CHANNEL)
                 .setSmallIcon(R.drawable.ic_launcher_foreground)
                 .setContentTitle("Bạn có lịch " + remoteMessage.data["name"] + " của thầy/cô ${remoteMessage.data["teacherName"]}")
                 .setContentText("Lúc ${CalendarUtl.toFormattedTime(remoteMessage.data["timestamp"]?.toLong() ?: Calendar.getInstance().timeInMillis)}")
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setDefaults(Notification.DEFAULT_ALL)
+                .setContentIntent(pendingIntent)
                 .setAutoCancel(true)
 
             with(NotificationManagerCompat.from(this)) {
