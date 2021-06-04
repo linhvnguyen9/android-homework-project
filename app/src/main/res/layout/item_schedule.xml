@@ -10,14 +10,17 @@
     </data>
 
     <FrameLayout
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/background_text_filter"
         android:clipToPadding="false">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             app:cardElevation="4dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginVertical="8dp"
             android:layout_marginHorizontal="8dp"
             app:cardCornerRadius="8dp"
             android:layout_height="wrap_content">

@@ -1,17 +1,14 @@
 package com.linh.myapplication.presentation.result
 
-import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.DatePicker
 import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.DialogFragment
-import com.linh.myapplication.databinding.FragmentGradeBinding
 import com.linh.myapplication.databinding.FragmentScheduleFilterDialogBinding
 import com.linh.myapplication.presentation.CalendarUtl
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -43,7 +40,7 @@ class ScheduleFilterDialogFragment : DialogFragment() {
         binding.textStartDate.text = CalendarUtl.toFormattedString(viewModel.timeLower)
         binding.textEndDate.text = CalendarUtl.toFormattedString(viewModel.timeUpper)
 
-        binding.buttonStart.setOnClickListener {
+        binding.textStartDate.setOnClickListener {
             DatePickerDialog(requireContext(),
                 { view, year, month, dayOfMonth ->
                     val calendar = Calendar.getInstance()
@@ -62,7 +59,7 @@ class ScheduleFilterDialogFragment : DialogFragment() {
 
         }
 
-        binding.buttonEnd.setOnClickListener {
+        binding.textEndDate.setOnClickListener {
             DatePickerDialog(requireContext(),
                 { view, year, month, dayOfMonth ->
                     val calendar = Calendar.getInstance()
