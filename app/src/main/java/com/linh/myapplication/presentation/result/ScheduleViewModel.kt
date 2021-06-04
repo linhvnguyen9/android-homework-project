@@ -17,7 +17,7 @@ class ScheduleViewModel(private val service: ScheduleService, private val dao: S
     var query: String = ""
     var sort: String = ""
     var timeLower: Long = 0L
-    var timeUpper: Long = 1500436800000L
+    var timeUpper: Long = 1722781439281L
 
     val schedule: LiveData<List<Schedule>> get() = _schedule
     private val _schedule = MutableLiveData<List<Schedule>>()
@@ -32,7 +32,7 @@ class ScheduleViewModel(private val service: ScheduleService, private val dao: S
         searchQuery: String? = "",
         sortKey: String? = "timestamp",
         timestampLower: Long? = 0,
-        timestampUpper: Long? = 1500436800000
+        timestampUpper: Long? = 1722781439281L
     ) {
         if (searchQuery != null) {
             query = searchQuery
