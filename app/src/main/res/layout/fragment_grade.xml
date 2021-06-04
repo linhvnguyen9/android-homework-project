@@ -19,14 +19,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toStartOf="@+id/image_filter"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/spinner_order" />
-
-        <Spinner
-            android:id="@+id/spinner_order"
-            android:layout_width="180dp"
-            android:layout_height="50dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <ImageButton
             android:id="@+id/image_filter"

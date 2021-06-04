@@ -47,32 +47,6 @@ class ScheduleFragment : Fragment() {
                 return true
             }
         })
-        binding.spinnerOrder.adapter = ArrayAdapter.createFromResource(requireContext(), R.array.sort, android.R.layout.simple_spinner_dropdown_item)
-        binding.spinnerOrder.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                when (position) {
-                    0 -> {
-                        viewModel.getSchedule(null, "time", null, null)
-                    }
-                    1 -> {
-                        viewModel.getSchedule(null, "name", null, null)
-                    }
-                    2 -> {
-                        viewModel.getSchedule(null, "teacher", null, null)
-                    }
-                }
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                viewModel.getSchedule()
-            }
-        }
-
         binding.imageFilter.setOnClickListener {
             ScheduleFilterDialogFragment().show(
                 childFragmentManager,

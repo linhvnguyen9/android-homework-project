@@ -6,9 +6,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.DialogFragment
+import com.linh.myapplication.R
 import com.linh.myapplication.databinding.FragmentScheduleFilterDialogBinding
 import com.linh.myapplication.presentation.CalendarUtl
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -79,6 +82,32 @@ class ScheduleFilterDialogFragment : DialogFragment() {
 
         binding.buttonDismiss.setOnClickListener {
             dismiss()
+        }
+
+        binding.spinnerOrder.adapter = ArrayAdapter.createFromResource(requireContext(), R.array.sort, android.R.layout.simple_spinner_dropdown_item)
+        binding.spinnerOrder.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                when (position) {
+                    0 -> {
+                        viewModel.getSchedule(null, "time", null, null)
+                    }
+                    1 -> {
+                        viewModel.getSchedule(null, "name", null, null)
+                    }
+                    2 -> {
+                        viewModel.getSchedule(null, "teacher", null, null)
+                    }
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                viewModel.getSchedule()
+            }
         }
     }
 }
